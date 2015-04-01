@@ -15,3 +15,8 @@ data = [
 
 def get_all():
     return data
+
+
+def get_by_id(id):
+    items = [item for item in data if item['id'] == id]
+    return items[0] if len(items) > 0 else None
