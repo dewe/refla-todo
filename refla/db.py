@@ -17,7 +17,7 @@ def get_all():
     return data
 
 
-def get_by_id(item_id):
+def get(item_id):
     items = [item for item in data if item['id'] == item_id]
     return items[0] if len(items) > 0 else None
 
@@ -30,7 +30,11 @@ def insert(item):
 
 
 def update(item_id, item):
-    item = copy(item)
-    item['id'] = item_id
-    globals()['data'] = map(lambda x: x if x['id'] != item_id else item, data)
-    return item
+    new_item = copy(item)
+    new_item['id'] = item_id
+    globals()['data'] = map(lambda x: new_item if x['id'] == item_id else x, data)
+    return new_item
+
+
+def delete(item_id):
+    data.remove(get(item_id))

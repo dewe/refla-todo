@@ -16,7 +16,7 @@ def get_tasks():
 
 @app.route('/api/tasks/<int:task_id>', methods=['GET'])
 def get_task(task_id):
-    task = db.get_by_id(task_id)
+    task = db.get(task_id)
     if task is None:
         abort(404)
     return jsonify({'task': task})
@@ -36,7 +36,7 @@ def create_task():
 
 @app.route('/api/tasks/<int:task_id>', methods=['PUT'])
 def update_task(task_id):
-    task = db.get_by_id(task_id)
+    task = db.get(task_id)
     if task is None:
         abort(404)
     if not request.json:
@@ -52,6 +52,16 @@ def update_task(task_id):
     })
     print(task)
     return jsonify({'task': task})
+
+
+@app.route('/api/tasks/<int:task_id>', methods=['DELETE'])
+def delete_task(task_id):
+    task = db.get(task_id)
+    if task is None:
+        abort(404)
+    db.delete(task_id)
+    return jsonify({'result': True})
+
 
 if __name__ == '__main__':
     app.run(debug=True)

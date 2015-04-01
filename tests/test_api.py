@@ -41,7 +41,8 @@ class TestApi:
                                  content_type='application/json')
         assert response.status_code == 201
         assert json.loads(response.data)['task']['id'] == 3
-        assert len(db.data) == 3
+        tasks = json.loads(self.app.get('/api/tasks').data)['tasks']
+        assert len(tasks) == 3
 
     def test_post_new_task_non_json(self):
         response = self.app.post('/api/tasks', 
@@ -60,8 +61,8 @@ class TestApi:
                                 content_type='application/json')
         assert response.status_code == 200
         assert json.loads(response.data)['task'] == {'id':1, 'title':'updated', 'done':True}
-        response = self.app.get('/api/tasks/1')
-        assert json.loads(response.data)['task'] == {'id':1, 'title':'updated', 'done':True}
+        task = json.loads(self.app.get('/api/tasks/1').data)['task']
+        assert task == {'id':1, 'title':'updated', 'done':True}
 
     def test_put_update_task_not_found(self):
         response = self.app.put('/api/tasks/3',
@@ -80,5 +81,11 @@ class TestApi:
                                 data='{"done":1234556}', 
                                 content_type='application/json')
         assert response.status_code == 400
+
+    def test_delete_task(self):
+        response = self.app.delete('/api/tasks/2')
+        assert response.status_code == 200
+        tasks = json.loads(self.app.get('/api/tasks').data)['tasks']
+        assert len(tasks) == 1
 
 
