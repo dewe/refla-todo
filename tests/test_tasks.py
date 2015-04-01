@@ -6,7 +6,6 @@ tasks = [
 	{'id':2, 'title': 'test2'}
 ]
 
-
 class TestApi:
 	
 	def setup(self):
@@ -30,3 +29,4 @@ class TestApi:
 	def test_get_task_not_found(self):
 		response = self.app.get('/api/tasks/4711')
 		assert response.status_code == 404
+		assert response.data == json.dumps({ "message": "404: Not Found" }, indent=2)

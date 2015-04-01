@@ -1,10 +1,10 @@
 #!flask/bin/python
 from flask import Flask, jsonify
 from flask import abort
+from json_flask import make_json_app
 import db
 
-app = Flask(__name__)
-
+app = make_json_app(__name__)
 
 @app.route('/api/tasks', methods=['GET'])
 def get_tasks():
@@ -19,7 +19,6 @@ def get_task(task_id):
 	if len(task) == 0:
 	    abort(404)
 	return jsonify({'task': task[0]})
-
 
 
 if __name__ == '__main__':
