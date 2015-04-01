@@ -2,10 +2,22 @@
 from flask import Flask, jsonify
 from flask import abort
 from flask import request
+from flask import url_for
 from json_flask import make_json_app
 import db
 
 app = make_json_app(__name__)
+
+@app.route('/')
+def index():
+    return 'refla-todo'
+
+
+@app.route('/api')
+def api_root():
+    return jsonify({
+        'tasks': url_for('get_tasks'),
+    })
 
 
 @app.route('/api/tasks', methods=['GET'])
@@ -20,7 +32,6 @@ def get_task(task_id):
     if task is None:
         abort(404)
     return jsonify({'task': task})
-
 
 
 @app.route('/api/tasks', methods=['POST'])
