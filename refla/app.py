@@ -16,7 +16,7 @@ def index():
 @app.route('/api')
 def api_root():
     return jsonify({
-        'tasks': url_for('get_tasks'),
+        'tasks': url_for('get_tasks', _external=True),
     })
 
 
