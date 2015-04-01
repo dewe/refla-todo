@@ -8,7 +8,7 @@ tasks = [
 ]
 
 class TestApi:
-    
+
     def setup(self):
         refla.app.config['TESTING'] = True
         self.app = refla.app.test_client()
@@ -18,18 +18,21 @@ class TestApi:
 
     def test_get_tasks(self):
         response = self.app.get('/api/tasks')
+        data = json.loads(response.data)
         assert response.status_code == 200
-        assert response.data == json.dumps({'tasks': tasks}, indent=2)
+        assert len(data['tasks']) == 2
 
     def test_get_task(self):
         response = self.app.get('/api/tasks/2')
+        data = json.loads(response.data)
         assert response.status_code == 200
-        assert response.data == json.dumps({'task': tasks[1]}, indent=2)
+        assert data['task'] == {'uri':'http://localhost/api/tasks/2', 'title':'test2', 'done':True}
 
     def test_get_task_not_found(self):
         response = self.app.get('/api/tasks/4711')
+        data = json.loads(response.data)
         assert response.status_code == 404
-        assert response.data == json.dumps({ 'message': '404: Not Found' }, indent=2)
+        assert data == { 'message': '404: Not Found' }
 
     def test_get_task_bad_id(self):
         response = self.app.get('/api/tasks/foul_id')
@@ -39,8 +42,9 @@ class TestApi:
         response = self.app.post('/api/tasks', 
                                  data='{"title":"foo"}', 
                                  content_type='application/json')
+        data = json.loads(response.data)
         assert response.status_code == 201
-        assert json.loads(response.data)['task']['id'] == 3
+        assert data['task']['uri'] == 'http://localhost/api/tasks/3'
         tasks = json.loads(self.app.get('/api/tasks').data)['tasks']
         assert len(tasks) == 3
 
@@ -59,10 +63,10 @@ class TestApi:
         response = self.app.put('/api/tasks/1', 
                                 data='{"title":"updated", "done": true}', 
                                 content_type='application/json')
+        data = json.loads(response.data)
         assert response.status_code == 200
-        assert json.loads(response.data)['task'] == {'id':1, 'title':'updated', 'done':True}
         task = json.loads(self.app.get('/api/tasks/1').data)['task']
-        assert task == {'id':1, 'title':'updated', 'done':True}
+        assert task == {'uri':'http://localhost/api/tasks/1', 'title':'updated', 'done':True}
 
     def test_put_update_task_not_found(self):
         response = self.app.put('/api/tasks/3',

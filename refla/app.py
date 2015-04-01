@@ -1,12 +1,20 @@
 #!flask/bin/python
-from flask import Flask, jsonify
-from flask import abort
-from flask import request
-from flask import url_for
+from flask import Flask, jsonify, abort, request, url_for
 from json_flask import make_json_app
 import db
 
 app = make_json_app(__name__)
+
+
+def make_public_task(task):
+    new_task = {}
+    for field in task:
+        if field == 'id':
+            new_task['uri'] = url_for('get_task', task_id=task['id'], _external=True)
+        else:
+            new_task[field] = task[field]
+    return new_task
+
 
 @app.route('/')
 def index():
@@ -23,7 +31,7 @@ def api_root():
 @app.route('/api/tasks', methods=['GET'])
 def get_tasks():
     tasks = db.get_all()
-    return jsonify({'tasks': tasks})
+    return jsonify({'tasks': [make_public_task(task) for task in tasks]})
 
 
 @app.route('/api/tasks/<int:task_id>', methods=['GET'])
@@ -31,7 +39,7 @@ def get_task(task_id):
     task = db.get(task_id)
     if task is None:
         abort(404)
-    return jsonify({'task': task})
+    return jsonify({'task': make_public_task(task)})
 
 
 @app.route('/api/tasks', methods=['POST'])
@@ -42,7 +50,7 @@ def create_task():
         'title': request.json['title'],
         'done': False
     })
-    return jsonify({'task': task}), 201
+    return jsonify({'task': make_public_task(task)}), 201
 
 
 @app.route('/api/tasks/<int:task_id>', methods=['PUT'])
@@ -61,8 +69,7 @@ def update_task(task_id):
         'title': request.json.get('title', task['title']),
         'done': request.json.get('done', task['done'])
     })
-    print(task)
-    return jsonify({'task': task})
+    return jsonify({'task': make_public_task(task)})
 
 
 @app.route('/api/tasks/<int:task_id>', methods=['DELETE'])
