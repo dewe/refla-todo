@@ -1,0 +1,1 @@
+web: gunicorn refla.app:app --log-file=-
