@@ -2,9 +2,9 @@ from flask import Flask, jsonify
 from werkzeug.exceptions import default_exceptions
 from werkzeug.exceptions import HTTPException
 
-__all__ = ['make_json_app']
+__all__ = ['create_json_app']
 
-def make_json_app(import_name, **kwargs):
+def create_json_app(import_name, **kwargs):
     """
     Creates a JSON-oriented Flask app.
 
