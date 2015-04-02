@@ -19716,11 +19716,23 @@ module.exports = warning;
 module.exports = require('./lib/React');
 
 },{"./lib/React":29}],157:[function(require,module,exports){
-'use strict';
-
 var React = require('react');
 
-console.log('EHLO!');
+module.exports = React.createClass({displayName: "exports",
+    render: function() {
+        return React.DOM.div({ className:'todo-container' }, 'react todo app');
+    }
+});
 
 
-},{"react":156}]},{},[157]);
+},{"react":156}],158:[function(require,module,exports){
+'use strict';
+var React = require('react');
+var TodoApp = require('./components/TodoApp.react')
+
+React.render(
+    React.createElement(TodoApp), 
+    document.getElementById('react-mount')
+);
+
+},{"./components/TodoApp.react":157,"react":156}]},{},[158]);

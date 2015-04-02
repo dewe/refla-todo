@@ -8,10 +8,9 @@
     "test": "tests"
   },
   "scripts": {
-    "watch": "watchify refla/todoapp.js -o refla/static/js/bundle.js -v",
-    "browserify": "browserify refla/todoapp.js -o refla/static/js/bundle.js",
-    "build": "npm run browserify ",
-    "start": "npm run watch & nodemon server.js",
+    "watch": "watchify refla/main.js -o refla/static/js/bundle.js -v",
+    "browserify": "browserify refla/main.js -o refla/static/js/bundle.js",
+    "build": "npm run browserify",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
