@@ -19720,5 +19720,7 @@ module.exports = require('./lib/React');
 
 var React = require('react');
 
+console.log('EHLO!');
+
 
 },{"react":156}]},{},[157]);

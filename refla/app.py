@@ -1,5 +1,5 @@
 #!flask/bin/python
-from flask import Flask, jsonify, abort, request, url_for
+from flask import Flask, jsonify, abort, request, url_for, render_template
 from json_app_factory import create_json_app
 import db
 
@@ -18,7 +18,7 @@ def make_public(task):
 
 @app.route('/')
 def index():
-    return 'refla-todo'
+    return render_template('index.html')
 
 
 @app.route('/api')

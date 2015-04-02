@@ -22,6 +22,7 @@ __Backend:__
 
 __Frontend:__
 * React: slim, isomorphic (if server == node), well designed and to the point. Do one thing and do it well. Seems right to me.
+* Browserify: running node style commonjs modules on the browser is sweet, and essential, to a backend dev.
 
 __Rest API:__
 * No trailing slashes: avoid HTTP redirects by mistake.
