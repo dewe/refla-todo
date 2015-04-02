@@ -12,3 +12,24 @@ $ virtualenv env
 $ pip install -r requirements.txt
 $ setup.py install
 ```
+
+## Design choices
+
+__Backend:__
+* Flask: just because. And for its lightness, its testability and the fun of it.
+* Pytest: if you should have only one testing framework for python, go with pytest.
+* Gunicorn: WSGI + heroku = true.
+
+__Frontend:__
+* React: slim, isomorphic (if server == node), well designed and to the point. Do one thing and do it well. Seems right to me.
+
+__Rest API:__
+* No trailing slashes: avoid HTTP redirects by mistake.
+* URIs instead of IDs: not exactly hateoas, but improves dev experience.
+
+
+## Possible future improvements
+
+* Use flask blueprints to factor app into separate web and api components.
+* An actual database.
+* Api auth, multiple concurrent users.

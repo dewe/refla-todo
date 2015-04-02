@@ -1,0 +1,40 @@
+{
+  "name": "refla-todo",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Description TBD",
+  "main": "",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "watch": "watchify refla/app.js -o refla/static/js/bundle.js -v",
+    "browserify": "browserify refla/app.js -o refla/static/js/bundle.js",
+    "build": "npm run browserify ",
+    "start": "npm run watch & nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dewe/refla-todo.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dewe/refla-todo/issues"
+  },
+  "homepage": "https://github.com/dewe/refla-todo",
+  "dependencies": {
+    "react": "^0.13.1"
+  },
+  "devDependencies": {
+    "browserify": "^9.0.4",
+    "reactify": "^1.1.0",
+    "watchify": "^3.1.0"
+  },
+  "browserify": {
+    "transform": [
+      "reactify"
+    ]
+  }
+}
