@@ -9,7 +9,7 @@
   },
   "scripts": {
     "watch": "watchify refla/main.js -o refla/static/js/bundle.js -v",
-    "browserify": "browserify refla/main.js -o refla/static/js/bundle.js",
+    "browserify": "browserify refla/main.js | uglifyjs > refla/static/js/bundle.js",
     "build": "npm run browserify",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -29,6 +29,7 @@
   "devDependencies": {
     "browserify": "^9.0.4",
     "reactify": "^1.1.0",
+    "uglify-js": "^2.4.19",
     "watchify": "^3.1.0"
   },
   "browserify": {

@@ -31,7 +31,6 @@ __Rest API:__
 
 ## Possible future improvements
 
-* Minify bundle.js
 * Enable compression of static files
 * Enable http caching of bundle.js, including a cache buster
 * Use flask blueprints to factor app into separate web and api components.
