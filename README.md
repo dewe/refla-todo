@@ -29,9 +29,14 @@ __Rest API:__
 * URIs instead of IDs: not exactly hateoas, but improves dev experience.
 
 
-## Possible future improvements
+## Todos and possible future improvements
 
+__Dev:__
 * Test coverage of client side code
+* Apply jslinting/hinting
+* Move components and tasksvc into node_modules/app for cleaner references.
+
+__App:__
 * Enable compression of static files
 * Enable http caching of bundle.js, including a cache buster
 * Use flask blueprints to factor app into separate web and api components.

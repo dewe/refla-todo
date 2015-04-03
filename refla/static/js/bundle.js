@@ -19719,6 +19719,7 @@ module.exports = require('./lib/React');
 var React = require('react');
 var TodoInput = require('./TodoInput.react');
 var TodoList = require('./TodoList.react');
+var tasksvc = require('../tasksvc')
 
 module.exports = TodoApp = React.createClass({displayName: "TodoApp",
   getInitialState: function() {
@@ -19726,17 +19727,10 @@ module.exports = TodoApp = React.createClass({displayName: "TodoApp",
   },
 
   componentDidMount: function() {
-    var request = new XMLHttpRequest(), self = this;
-    request.open('GET', '/api/tasks', true);
-    request.onload = function() {
-      if (request.status >= 200 && request.status < 400) {
-        var body = JSON.parse(request.responseText); //todo: try/catch
-        var newTasks = body.tasks.map(function(t){return t.title});
-        self.setState({tasks: newTasks});
-      }
-    };
-
-    request.send();
+    var self = this;
+    tasksvc.getTasks(function(err, tasks) {
+        self.setState({tasks: tasks});
+    });
   },
 
   addTask: function(taskText) {
@@ -19755,7 +19749,7 @@ module.exports = TodoApp = React.createClass({displayName: "TodoApp",
 });
 
 
-},{"./TodoInput.react":158,"./TodoList.react":159,"react":156}],158:[function(require,module,exports){
+},{"../tasksvc":161,"./TodoInput.react":158,"./TodoList.react":159,"react":156}],158:[function(require,module,exports){
 var React = require('react');
 
 module.exports = TodoInput = React.createClass({displayName: "TodoInput",
@@ -19811,4 +19805,25 @@ React.render(
     document.getElementById('react-mount')
 );
 
-},{"./components/TodoApp.react":157,"react":156}]},{},[160]);
+},{"./components/TodoApp.react":157,"react":156}],161:[function(require,module,exports){
+
+exports.getTasks = function(callback) {
+    var request = new XMLHttpRequest(), self = this;
+
+    request.open('GET', '/api/tasks', true);
+
+    request.onload = function() {
+      if (request.status >= 200 && request.status < 400) {
+        var body = JSON.parse(request.responseText); //todo: try/catch
+        var newTasks = body.tasks.map(function(t){return t.title});
+        callback(null, newTasks);
+      } else {
+        callback(request.status);
+      }
+    };
+
+    request.send();
+
+}
+
+},{}]},{},[160]);
