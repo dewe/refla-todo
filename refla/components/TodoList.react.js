@@ -2,11 +2,16 @@ var React = require('react');
 
 module.exports = TodoList = React.createClass({
   render: function() {
-    return <ul>{this.props.tasks.map(createItem)}</ul>;
+    return <ul>{this.props.items.map(createItem)}</ul>;
   }
 });
 
-function createItem(text) {
-  return <li>{text}</li>;
+function createItem(task) {
+  return (
+    <li>
+      <input type='checkbox' />
+      <label>{task.title}</label>
+    </li>
+  );
 };
 

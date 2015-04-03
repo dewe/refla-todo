@@ -19742,7 +19742,7 @@ module.exports = TodoApp = React.createClass({displayName: "TodoApp",
     return (
       React.createElement("div", null, 
         React.createElement(TodoInput, {handleNewTask: this.addTask}), 
-        React.createElement(TodoList, {tasks: this.state.tasks})
+        React.createElement(TodoList, {items: this.state.tasks})
       )
     );
   }
@@ -19785,12 +19785,17 @@ var React = require('react');
 
 module.exports = TodoList = React.createClass({displayName: "TodoList",
   render: function() {
-    return React.createElement("ul", null, this.props.tasks.map(createItem));
+    return React.createElement("ul", null, this.props.items.map(createItem));
   }
 });
 
-function createItem(text) {
-  return React.createElement("li", null, text);
+function createItem(task) {
+  return (
+    React.createElement("li", null, 
+      React.createElement("input", {type: "checkbox"}), 
+      React.createElement("label", null, task.title)
+    )
+  );
 };
 
 
@@ -19808,22 +19813,20 @@ React.render(
 },{"./components/TodoApp.react":157,"react":156}],161:[function(require,module,exports){
 
 exports.getTasks = function(callback) {
-    var request = new XMLHttpRequest(), self = this;
+    var request = new XMLHttpRequest();
 
     request.open('GET', '/api/tasks', true);
 
     request.onload = function() {
       if (request.status >= 200 && request.status < 400) {
-        var body = JSON.parse(request.responseText); //todo: try/catch
-        var newTasks = body.tasks.map(function(t){return t.title});
-        callback(null, newTasks);
+        var body = JSON.parse(request.responseText); //TODO: try/catch
+        callback(null, body.tasks);
       } else {
         callback(request.status);
       }
     };
 
     request.send();
-
 }
 
 },{}]},{},[160]);

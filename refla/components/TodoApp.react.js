@@ -24,7 +24,7 @@ module.exports = TodoApp = React.createClass({
     return (
       <div>
         <TodoInput handleNewTask={this.addTask} />
-        <TodoList tasks={this.state.tasks} />
+        <TodoList items={this.state.tasks} />
       </div>
     );
   }
