@@ -19738,18 +19738,22 @@ module.exports = TodoApp = React.createClass({displayName: "TodoApp",
     this.setState({tasks: newTasks});
   },
 
+  onToggle: function(x) {
+    console.log('onToggle', x);
+  },
+
   render: function() {
     return (
       React.createElement("div", null, 
         React.createElement(TodoInput, {handleNewTask: this.addTask}), 
-        React.createElement(TodoList, {items: this.state.tasks})
+        React.createElement(TodoList, {items: this.state.tasks, onToggle: this.onToggle})
       )
     );
   }
 });
 
 
-},{"../tasksvc":161,"./TodoInput.react":158,"./TodoList.react":159,"react":156}],158:[function(require,module,exports){
+},{"../tasksvc":162,"./TodoInput.react":158,"./TodoList.react":160,"react":156}],158:[function(require,module,exports){
 var React = require('react');
 
 module.exports = TodoInput = React.createClass({displayName: "TodoInput",
@@ -19783,24 +19787,35 @@ module.exports = TodoInput = React.createClass({displayName: "TodoInput",
 },{"react":156}],159:[function(require,module,exports){
 var React = require('react');
 
-module.exports = TodoList = React.createClass({displayName: "TodoList",
+module.exports = TodoItem = React.createClass({displayName: "TodoItem",
   render: function() {
-    return React.createElement("ul", null, this.props.items.map(createItem));
+    return (
+      React.createElement("li", null, 
+        React.createElement("input", {type: "checkbox", onChange: this.props.onToggle, defaultChecked: this.props.item.done}), 
+        React.createElement("label", null, this.props.item.title)
+      )
+    );
   }
 });
 
-function createItem(task) {
-  return (
-    React.createElement("li", null, 
-      React.createElement("input", {type: "checkbox"}), 
-      React.createElement("label", null, task.title)
-    )
-  );
-};
-
-
-
 },{"react":156}],160:[function(require,module,exports){
+var React = require('react');
+var TodoItem = require('./TodoItem.react');
+
+module.exports = TodoList = React.createClass({displayName: "TodoList",
+  render: function() {
+    return React.createElement("ul", null, this.props.items.map(this.createItem));
+  },
+
+  createItem: function (item) {
+    return React.createElement(TodoItem, {item: item, onToggle: this.props.onToggle})
+  }
+});
+
+
+
+
+},{"./TodoItem.react":159,"react":156}],161:[function(require,module,exports){
 'use strict';
 var React = require('react');
 var TodoApp = require('./components/TodoApp.react')
@@ -19810,7 +19825,7 @@ React.render(
     document.getElementById('react-mount')
 );
 
-},{"./components/TodoApp.react":157,"react":156}],161:[function(require,module,exports){
+},{"./components/TodoApp.react":157,"react":156}],162:[function(require,module,exports){
 
 exports.getTasks = function(callback) {
     var request = new XMLHttpRequest();
@@ -19829,4 +19844,4 @@ exports.getTasks = function(callback) {
     request.send();
 }
 
-},{}]},{},[160]);
+},{}]},{},[161]);

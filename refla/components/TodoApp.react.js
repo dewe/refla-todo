@@ -20,11 +20,15 @@ module.exports = TodoApp = React.createClass({
     this.setState({tasks: newTasks});
   },
 
+  onToggle: function(x) {
+    console.log('onToggle', x);
+  },
+
   render: function() {
     return (
       <div>
         <TodoInput handleNewTask={this.addTask} />
-        <TodoList items={this.state.tasks} />
+        <TodoList items={this.state.tasks} onToggle={this.onToggle} />
       </div>
     );
   }

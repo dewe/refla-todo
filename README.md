@@ -42,3 +42,4 @@ __App:__
 * Use flask blueprints to factor app into separate web and api components.
 * An actual database.
 * Api auth, multiple concurrent users.
+* Better API error messages for status 400.
