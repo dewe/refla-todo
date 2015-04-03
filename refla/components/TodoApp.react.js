@@ -1,32 +1,22 @@
 var React = require('react');
+var TodoInput = require('./TodoInput.react')
 var TodoList = require('./TodoList.react');
 
 module.exports = TodoApp = React.createClass({
-
   getInitialState: function() {
-    return {items: [], text: ''};
+    return {tasks: []};
   },
 
-  onChange: function(e) {
-    this.setState({text: e.target.value});
-  },
-
-  handleSubmit: function(e) {
-    e.preventDefault();
-    var nextItems = this.state.items.concat([this.state.text]);
-    var nextText = '';
-    this.setState({items: nextItems, text: nextText});
+  addTask: function(taskText) {
+    var newTasks = this.state.tasks.concat([taskText]);
+    this.setState({tasks: newTasks});
   },
 
   render: function() {
     return (
       <div>
-        <h3>TODO</h3>
-        <form onSubmit={this.handleSubmit}>
-          <input onChange={this.onChange} value={this.state.text} />
-          <button>{'Add #' + (this.state.items.length + 1)}</button>
-        </form>
-        <TodoList items={this.state.items} />
+        <TodoInput handleNewTask={this.addTask} />
+        <TodoList tasks={this.state.tasks} />
       </div>
     );
   }
