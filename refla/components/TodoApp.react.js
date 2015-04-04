@@ -11,15 +11,16 @@ module.exports = TodoApp = React.createClass({
   componentDidMount: function() {
     var self = this;
     tasksvc.getTasks(function(err, tasks) {
-        self.setState({tasks: tasks});
+      self.setState({tasks: tasks});
     });
   },
 
   addTask: function(taskText) {
-    var task = {title: taskText}
-    var newTasks = this.state.tasks.concat([task]);
-    this.setState({tasks: newTasks});
-    console.log('todo: call api update with task', task);
+    var task = {title: taskText}, self = this;
+    tasksvc.addTask(task, function(err, newTask) {
+      var newTasks = self.state.tasks.concat([newTask]);
+      self.setState({tasks: newTasks});    
+    });
   },
 
   updateTask: function(task) {

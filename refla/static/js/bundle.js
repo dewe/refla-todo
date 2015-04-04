@@ -20225,15 +20225,16 @@ module.exports = TodoApp = React.createClass({displayName: "TodoApp",
   componentDidMount: function() {
     var self = this;
     tasksvc.getTasks(function(err, tasks) {
-        self.setState({tasks: tasks});
+      self.setState({tasks: tasks});
     });
   },
 
   addTask: function(taskText) {
-    var task = {title: taskText}
-    var newTasks = this.state.tasks.concat([task]);
-    this.setState({tasks: newTasks});
-    console.log('todo: call api update with task', task);
+    var task = {title: taskText}, self = this;
+    tasksvc.addTask(task, function(err, newTask) {
+      var newTasks = self.state.tasks.concat([newTask]);
+      self.setState({tasks: newTasks});    
+    });
   },
 
   updateTask: function(task) {
@@ -20335,29 +20336,30 @@ React.render(
 var request = require('browser-request');
 
 exports.getTasks = function(callback) {
-  var uri = '/api/tasks';
-  logApiCall(uri);
-  request({method:'GET', uri:uri, json:true}, function(error, response, body) {
-    if (error) {
-      console.error(error);
-    };
-    callback(error, body.tasks);
+  var options = {method:'GET', uri:'/api/tasks'};
+  apiJsonRequest(options, function(err, res, json) {
+    callback(err, json.tasks);
+  });
+}; 
+
+exports.addTask = function(task, callback) {
+  var options = {method:'POST', uri: '/api/tasks', json:task};
+  apiJsonRequest(options, function(err, res, json) {
+    callback && callback(err, json.task);
   });
 }; 
 
 exports.updateTask = function(task, callback) {
-  var uri = task.uri;
-  logApiCall(uri, task);
-  request({method:'PUT', uri:uri, json:task}, function(error, response, body) {
-    if (error) {
-      console.error(error);
-    };
-    callback && callback(error, body.task);
+  var options = {method:'PUT', uri:task.uri, json:task}
+  apiJsonRequest(options, function(err, res, json) {
+    callback && callback(err, json.task);
   });
 }; 
 
-function logApiCall(uri, payload) {
-  console.log('calling api: %s', uri, payload);
+function apiJsonRequest(options, callback) {
+  options.json = options.json || true;
+  console.log('api call', options);
+  request(options, callback);
 }
 
 
