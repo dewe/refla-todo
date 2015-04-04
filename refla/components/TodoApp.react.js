@@ -24,7 +24,7 @@ module.exports = TodoApp = React.createClass({
 
   updateTask: function(task) {
     this.setState({tasks: this.state.tasks});
-    console.log('todo: call api update with task', task);
+    tasksvc.updateTask(task);
   },
 
   render: function() {

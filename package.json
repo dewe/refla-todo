@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/dewe/refla-todo",
   "dependencies": {
+    "browser-request": "^0.3.3",
     "react": "^0.13.1"
   },
   "devDependencies": {

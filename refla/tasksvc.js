@@ -1,17 +1,27 @@
+var request = require('browser-request');
 
 exports.getTasks = function(callback) {
-    var request = new XMLHttpRequest();
-
-    request.open('GET', '/api/tasks', true);
-
-    request.onload = function() {
-      if (request.status >= 200 && request.status < 400) {
-        var body = JSON.parse(request.responseText); //TODO: try/catch
-        callback(null, body.tasks);
-      } else {
-        callback(request.status);
-      }
+  var uri = '/api/tasks';
+  logApiCall(uri);
+  request({method:'GET', uri:uri, json:true}, function(error, response, body) {
+    if (error) {
+      console.error(error);
     };
+    callback(error, body.tasks);
+  });
+}; 
 
-    request.send();
+exports.updateTask = function(task, callback) {
+  var uri = task.uri;
+  logApiCall(uri, task);
+  request({method:'PUT', uri:uri, json:task}, function(error, response, body) {
+    if (error) {
+      console.error(error);
+    };
+    callback && callback(error, body.task);
+  });
+}; 
+
+function logApiCall(uri, payload) {
+  console.log('calling api: %s', uri, payload);
 }
