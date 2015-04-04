@@ -41,12 +41,14 @@ __App:__
 * Enable http caching of bundle.js, including a cache buster
 * Use flask blueprints to factor app into separate web and api components.
 * An actual database.
-* Api auth
+* Api auth.
 
 __Features:__
+* This feature list as app initial data.
 * Multiple lists
 * Private lists
 * Shared lists, concurrent use, socket.io.
 * Inline edit of tasks.
 * Task descriptions, i.e. more than just a title.
 * Better API error messages for status 400.
+* Handle retries of api calls, in case of failures.

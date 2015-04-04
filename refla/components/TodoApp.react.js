@@ -16,12 +16,15 @@ module.exports = TodoApp = React.createClass({
   },
 
   addTask: function(taskText) {
-    var newTasks = this.state.tasks.concat([taskText]);
+    var task = {title: taskText}
+    var newTasks = this.state.tasks.concat([task]);
     this.setState({tasks: newTasks});
+    console.log('todo: call api update with task', task);
   },
 
-  onToggle: function(x) {
-    console.log('onToggle', x);
+  updateTask: function(task) {
+    this.setState({tasks: this.state.tasks});
+    console.log('todo: call api update with task', task);
   },
 
   render: function() {
@@ -29,7 +32,7 @@ module.exports = TodoApp = React.createClass({
     return (
       <div>
         <TodoInput handleNewTask={this.addTask} />
-        <TodoList items={this.state.tasks} onToggle={this.onToggle} />
+        <TodoList items={this.state.tasks} handleItemUpdate={this.updateTask} />
         <div>{remaining} items left</div>
       </div>
     );

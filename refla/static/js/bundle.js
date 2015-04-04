@@ -19734,12 +19734,15 @@ module.exports = TodoApp = React.createClass({displayName: "TodoApp",
   },
 
   addTask: function(taskText) {
-    var newTasks = this.state.tasks.concat([taskText]);
+    var task = {title: taskText}
+    var newTasks = this.state.tasks.concat([task]);
     this.setState({tasks: newTasks});
+    console.log('todo: call api update with task', task);
   },
 
-  onToggle: function(x) {
-    console.log('onToggle', x);
+  updateTask: function(task) {
+    this.setState({tasks: this.state.tasks});
+    console.log('todo: call api update with task', task);
   },
 
   render: function() {
@@ -19747,7 +19750,7 @@ module.exports = TodoApp = React.createClass({displayName: "TodoApp",
     return (
       React.createElement("div", null, 
         React.createElement(TodoInput, {handleNewTask: this.addTask}), 
-        React.createElement(TodoList, {items: this.state.tasks, onToggle: this.onToggle}), 
+        React.createElement(TodoList, {items: this.state.tasks, handleItemUpdate: this.updateTask}), 
         React.createElement("div", null, remaining, " items left")
       )
     );
@@ -19790,11 +19793,17 @@ module.exports = TodoInput = React.createClass({displayName: "TodoInput",
 var React = require('react');
 
 module.exports = TodoItem = React.createClass({displayName: "TodoItem",
+  onChange: function() {
+    var task = this.props.item;
+    task.done = !task.done;
+    this.props.handleItemUpdate(task);
+  },
+
   render: function() {
     return (
       React.createElement("li", null, 
-        React.createElement("input", {type: "checkbox", onChange: this.props.onToggle, defaultChecked: this.props.item.done}), 
-        React.createElement("label", null, this.props.item.title)
+        React.createElement("input", {type: "checkbox", onChange: this.onChange, checked: this.props.item.done}), 
+        React.createElement("span", null, this.props.item.title)
       )
     );
   }
@@ -19810,7 +19819,7 @@ module.exports = TodoList = React.createClass({displayName: "TodoList",
   },
 
   createItem: function (item) {
-    return React.createElement(TodoItem, {item: item, onToggle: this.props.onToggle})
+    return React.createElement(TodoItem, {item: item, handleItemUpdate: this.props.handleItemUpdate})
   }
 });
 

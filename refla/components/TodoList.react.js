@@ -7,7 +7,7 @@ module.exports = TodoList = React.createClass({
   },
 
   createItem: function (item) {
-    return <TodoItem item={item} onToggle={this.props.onToggle} />
+    return <TodoItem item={item} handleItemUpdate={this.props.handleItemUpdate} />
   }
 });
 
