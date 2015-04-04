@@ -25,10 +25,12 @@ module.exports = TodoApp = React.createClass({
   },
 
   render: function() {
+    var remaining = this.state.tasks.filter(function(t){return !t.done}).length;
     return (
       <div>
         <TodoInput handleNewTask={this.addTask} />
         <TodoList items={this.state.tasks} onToggle={this.onToggle} />
+        <div>{remaining} items left</div>
       </div>
     );
   }

@@ -19743,10 +19743,12 @@ module.exports = TodoApp = React.createClass({displayName: "TodoApp",
   },
 
   render: function() {
+    var remaining = this.state.tasks.filter(function(t){return !t.done}).length;
     return (
       React.createElement("div", null, 
         React.createElement(TodoInput, {handleNewTask: this.addTask}), 
-        React.createElement(TodoList, {items: this.state.tasks, onToggle: this.onToggle})
+        React.createElement(TodoList, {items: this.state.tasks, onToggle: this.onToggle}), 
+        React.createElement("div", null, remaining, " items left")
       )
     );
   }
