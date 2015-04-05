@@ -1,0 +1,92 @@
+
+* {
+    font-size: 15px;
+}
+
+body {
+    background-color: #f6f5f5;
+    color: #4d4d4d;
+    font-family: 'Open Sans';
+    font-weight: 300;
+    font-style: normal;
+    font-variant: normal;
+}
+
+h1 {
+    font-size: 30px;
+    font-weight: 700;
+    line-height: 33px;
+}
+
+#todo-container {
+    background-color: white;
+    border: 1px solid #e5e4e4;
+    width: 500px ;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+}
+
+.header {
+    padding-top: 24px;
+    padding-bottom: 44px;
+    text-align: center;
+    border-bottom: 1px dashed #d5d3d3;
+}
+
+.todo-input {
+    padding-left: 20px;
+    padding-top: 2px;
+    box-shadow: none;
+}
+
+.todo-input input {
+    width: 300px;
+    height: 35px;
+    border: solid 1px #b7b6b6;
+    border-radius: 5px;
+    padding-left: 10px;
+    margin-right: 10px;
+}
+
+.todo-input button {
+    height: 39px;
+    width: 138px;
+    padding: 0px;
+    border: solid 1px #b7b6b6;
+    border-radius: 5px;
+
+}
+
+.todo-list {
+    list-style: none;
+    padding-left: 0px;
+}
+
+.todo-item {
+    padding: 20px;
+}
+
+.todo-item:nth-child(odd) {
+    background-color: #f4f7fa
+}
+
+.footer {
+    border-top: 1px dashed #d5d3d3;
+    height: 60px;
+}
+
+.items-left {
+    float: left;
+    padding: 20px;
+    font-size: 13px;
+}
+
+.mark-complete {
+    float: right;
+    padding: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #488dc9;
+    cursor: pointer;
+}

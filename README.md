@@ -35,6 +35,7 @@ __Dev:__
 * Test coverage of client side code
 * Apply jslinting/hinting
 * Move components and tasksvc into node_modules/app for cleaner references.
+* Use gulp or grunt instead of npm script.
 
 __App:__
 * Enable compression of static files
@@ -45,6 +46,7 @@ __App:__
 
 __Features:__
 * This feature list as app initial data.
+* Reorder tasks - drag and drop.
 * Multiple lists
 * Private lists
 * Shared lists, concurrent use, socket.io.

@@ -5,9 +5,9 @@ module.exports = TodoList = React.createClass({
   createItem: function(item) {
     return <TodoItem key={item.uri} item={item} handleItemUpdate={this.props.handleItemUpdate} />
   },
-  
+
   render: function() {
-    return <ul>{this.props.items.map(this.createItem)}</ul>;
+    return <ul className='todo-list'>{this.props.items.map(this.createItem)}</ul>;
   }
 });
 

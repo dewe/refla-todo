@@ -9,7 +9,7 @@ module.exports = TodoItem = React.createClass({
 
   render: function() {
     return (
-      <li>
+      <li className='todo-item'>
         <input type='checkbox' onChange={this.onChange} checked={this.props.item.done} />
         <span>{this.props.item.title}</span> 
       </li>

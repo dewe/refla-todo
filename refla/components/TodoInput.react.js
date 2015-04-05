@@ -17,7 +17,7 @@ module.exports = React.createClass({
 
   render: function() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} className='todo-input'>
         <input
           onChange={this.onChange}
           value={this.state.text}

@@ -29,7 +29,7 @@ module.exports = React.createClass({
   },
 
   markAllDone: function() {
-    var notDone = this.remainingTasks;
+    var notDone = this.remainingTasks();
     for (var i = 0; i < notDone.length; i++) {
       var task = notDone[i];
       task.done = true;
@@ -42,13 +42,16 @@ module.exports = React.createClass({
   },
 
   render: function() {
-    var count = this.remainingTasks.length;
+    var count = this.remainingTasks().length;
     return (
-      <div>
+      <div id="todo-container">
+        <h1 className='header'>Todos</h1>
         <TodoInput handleNewTask={this.addTask} />
         <TodoList items={this.state.tasks} handleItemUpdate={this.updateTask} />
-        <div>{count} items left</div>
-        <div onClick={this.markAllDone}>Mark all as complete</div>
+        <div className='footer'>
+          <div className='items-left'>{count} items left</div>
+          <div onClick={this.markAllDone} className='mark-complete'>Mark all as complete</div>
+        </div>
       </div>
     );
   }
