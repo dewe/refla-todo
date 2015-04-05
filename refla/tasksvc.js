@@ -3,7 +3,7 @@ var request = require('browser-request');
 exports.getTasks = function(callback) {
   var options = {method:'GET', uri:'/api/tasks'};
   apiJsonRequest(options, function(err, res, json) {
-    callback(err, json.tasks);
+    callback && callback(err, json.tasks);
   });
 }; 
 

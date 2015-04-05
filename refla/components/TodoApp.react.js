@@ -24,8 +24,17 @@ module.exports = TodoApp = React.createClass({
   },
 
   updateTask: function(task) {
-    this.setState({tasks: this.state.tasks});
     tasksvc.updateTask(task);
+    this.setState({tasks: this.state.tasks});
+  },
+
+  markAllDone: function() {
+    var unfinished = this.state.tasks.filter(function(task) { return !task.done });
+    for (var i=0; i<unfinished.length; i++) {
+      task = unfinished[i];
+      task.done = true;
+      this.updateTask(task);
+    }
   },
 
   render: function() {
@@ -35,6 +44,7 @@ module.exports = TodoApp = React.createClass({
         <TodoInput handleNewTask={this.addTask} />
         <TodoList items={this.state.tasks} handleItemUpdate={this.updateTask} />
         <div>{remaining} items left</div>
+        <div onClick={this.markAllDone}>Mark all as complete</div>
       </div>
     );
   }

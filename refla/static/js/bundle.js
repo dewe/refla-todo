@@ -20238,8 +20238,17 @@ module.exports = TodoApp = React.createClass({displayName: "TodoApp",
   },
 
   updateTask: function(task) {
-    this.setState({tasks: this.state.tasks});
     tasksvc.updateTask(task);
+    this.setState({tasks: this.state.tasks});
+  },
+
+  markAllDone: function() {
+    var unfinished = this.state.tasks.filter(function(task) { return !task.done });
+    for (var i=0; i<unfinished.length; i++) {
+      task = unfinished[i];
+      task.done = true;
+      this.updateTask(task);
+    }
   },
 
   render: function() {
@@ -20248,7 +20257,8 @@ module.exports = TodoApp = React.createClass({displayName: "TodoApp",
       React.createElement("div", null, 
         React.createElement(TodoInput, {handleNewTask: this.addTask}), 
         React.createElement(TodoList, {items: this.state.tasks, handleItemUpdate: this.updateTask}), 
-        React.createElement("div", null, remaining, " items left")
+        React.createElement("div", null, remaining, " items left"), 
+        React.createElement("div", {onClick: this.markAllDone}, "Mark all as complete")
       )
     );
   }
@@ -20338,7 +20348,7 @@ var request = require('browser-request');
 exports.getTasks = function(callback) {
   var options = {method:'GET', uri:'/api/tasks'};
   apiJsonRequest(options, function(err, res, json) {
-    callback(err, json.tasks);
+    callback && callback(err, json.tasks);
   });
 }; 
 
