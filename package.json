@@ -8,7 +8,7 @@
     "test": "tests"
   },
   "scripts": {
-    "watch": "watchify refla/main.js -o refla/static/js/bundle.js -v",
+    "watch": "watchify refla/main.js --debug -o refla/static/js/bundle.js -v",
     "browserify": "browserify refla/main.js | uglifyjs > refla/static/js/bundle.js",
     "build": "npm run browserify",
     "test": "echo \"Error: no test specified\" && exit 1"

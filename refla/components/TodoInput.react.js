@@ -1,7 +1,7 @@
 var React = require('react');
 
-module.exports = TodoInput = React.createClass({
-  getInitialState: function() {
+module.exports = React.createClass({
+  getInitialState: function () {
     return {text: ''};
   },
 
@@ -9,18 +9,18 @@ module.exports = TodoInput = React.createClass({
     this.setState({text: e.target.value});
   },
 
-  handleSubmit: function (e) {
+  handleSubmit: function(e) {
     e.preventDefault(); // prevent browser submitting form
     this.props.handleNewTask(this.state.text);
     this.setState({text: ''});
   },
 
-  render: function () {
+  render: function() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <input 
-          onChange={this.onChange} 
-          value={this.state.text} 
+        <input
+          onChange={this.onChange}
+          value={this.state.text}
           placeholder='What needs to be done?' />
         <button>Add Todo</button>
       </form>
