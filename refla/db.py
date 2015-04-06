@@ -3,12 +3,22 @@ from copy import copy
 data = [
     {
         'id': 1,
-        'title': u'Buy groceries',
+        'title': u'Discuss report with John',
         'done': False
     },
     {
         'id': 2,
-        'title': u'Learn Python',
+        'title': u'Get a haircut',
+        'done': True
+    },
+    {
+        'id': 3,
+        'title': u'Pay electricity bill',
+        'done': True
+    },
+    {
+        'id': 4,
+        'title': u'Check gym hours',
         'done': False
     }
 ]

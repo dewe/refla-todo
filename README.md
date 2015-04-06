@@ -26,7 +26,7 @@ __Frontend:__
 
 __Rest API:__
 * No trailing slashes: avoid HTTP redirects by mistake.
-* URIs instead of IDs: not exactly hateoas, but improves dev experience.
+* URIs instead of IDs: not exactly hateoas, but improves usage/dev experience.
 
 
 ## Todos and possible future improvements
@@ -35,7 +35,7 @@ __Dev:__
 * Test coverage of client side code
 * Apply jslinting/hinting
 * Move components and tasksvc into node_modules/app for cleaner references.
-* Use gulp or grunt instead of npm script.
+* Use gulp or grunt instead of npm script element.
 
 __App:__
 * Mobile CSS
