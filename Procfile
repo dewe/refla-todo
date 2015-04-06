@@ -1,1 +1,1 @@
-web: gunicorn --workers 1 refla.app:app --log-file=-
+web: gunicorn -w 1 refla.app:app --log-file=-
