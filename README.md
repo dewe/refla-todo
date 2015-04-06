@@ -9,9 +9,17 @@ App is live at [http://refla.herokuapp.com](http://refla.herokuapp.com).
 
 ```bash
 $ virtualenv env
+$ source env/bin/activate
 $ pip install -r requirements.txt
-$ setup.py install
+$ python setup.py install
+$ npm install // needed for dev only
 ```
+
+### Run the application
+
+From the root of this repository, run `python refla/app.py` 
+and point your browser to [http://localhost:5000](http://localhost:5000).
+
 
 ## Design choices
 
