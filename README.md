@@ -1,8 +1,8 @@
 # refla-todo
 
-Description TBD
+Having fun with React and Python/Flask.
 
-API is live at [http://refla.herokuapp.com/api](http://refla.herokuapp.com/api)
+App is live at [http://refla.herokuapp.com](http://refla.herokuapp.com).
 
 
 ## Installation in local setup
@@ -36,11 +36,12 @@ __Dev:__
 * Apply jslinting/hinting
 * Move components and tasksvc into node_modules/app for cleaner references.
 * Use gulp or grunt instead of npm script element.
+* Tweak browserify output to save bytes and/or exclude React dependencies.
 
 __App:__
 * Mobile CSS
 * Enable compression of static files
-* Enable http caching of bundle.js, including a cache buster
+* Enable http caching of bundle.js, including a cache buster.
 * Use flask blueprints to factor app into separate web and api components.
 * An actual database.
 * Api auth.
