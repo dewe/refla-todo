@@ -1,19 +1,16 @@
 
-* {
-    font-size: 15px;
-}
-
 body {
     background-color: #f6f5f5;
     color: #4d4d4d;
     font-family: 'Open Sans';
+    font-size: 15px;
     font-weight: 300;
     font-style: normal;
     font-variant: normal;
 }
 
 h1 {
-    font-size: 30px;
+    font-size: 2rem;
     font-weight: 700;
     line-height: 33px;
 }
@@ -47,6 +44,8 @@ h1 {
     border-radius: 5px;
     padding-left: 10px;
     margin-right: 10px;
+    font-size: 1rem;
+    font-weight: 300;
 }
 
 .todo-input button {
@@ -55,7 +54,18 @@ h1 {
     padding: 0px;
     border: solid 1px #b7b6b6;
     border-radius: 5px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #646463;
 
+    background: #ebeae9; /* Old browsers */
+    background: -moz-linear-gradient(top, #ebeae9 50%, #dad9d8 51%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(50%,#ebeae9), color-stop(51%,#dad9d8)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #ebeae9 50%,#dad9d8 51%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #ebeae9 50%,#dad9d8 51%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #ebeae9 50%,#dad9d8 51%); /* IE10+ */
+    background: linear-gradient(to bottom, #ebeae9 50%,#dad9d8 51%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ebeae9', endColorstr='#dad9d8',GradientType=0 ); /* IE6-9 */
 }
 
 .todo-list {
@@ -74,18 +84,19 @@ h1 {
 .footer {
     border-top: 1px dashed #d5d3d3;
     height: 60px;
+    color: #a9a9a9;
 }
 
 .items-left {
     float: left;
     padding: 20px;
-    font-size: 13px;
+    font-size: 0.8rem;
 }
 
 .mark-complete {
     float: right;
     padding: 20px;
-    font-size: 13px;
+    font-size: 0.8rem;
     font-weight: 600;
     color: #488dc9;
     cursor: pointer;

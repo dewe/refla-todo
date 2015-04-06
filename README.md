@@ -38,6 +38,7 @@ __Dev:__
 * Use gulp or grunt instead of npm script.
 
 __App:__
+* Mobile CSS
 * Enable compression of static files
 * Enable http caching of bundle.js, including a cache buster
 * Use flask blueprints to factor app into separate web and api components.
