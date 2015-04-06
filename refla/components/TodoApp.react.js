@@ -15,12 +15,14 @@ module.exports = React.createClass({
     });
   },
 
-  addTask: function(taskText) {
-    var task = {title: taskText}, self = this;
-    tasksvc.addTask(task, function(err, newTask) {
-      var newTasks = self.state.tasks.concat([newTask]);
-      self.setState({tasks: newTasks});    
-    });
+  addTask: function(taskText) {   
+    if(taskText.trim()) {
+      var task = {title: taskText}, self = this;
+      tasksvc.addTask(task, function(err, newTask) {
+        var newTasks = self.state.tasks.concat([newTask]);
+        self.setState({tasks: newTasks});    
+      });
+    }
   },
 
   updateTask: function(task) {

@@ -18,7 +18,11 @@ h1 {
 #todo-container {
     background-color: white;
     border: 1px solid #e5e4e4;
+    border-radius: 5px;
     width: 500px ;
+    min-height: 480px;
+    position: relative;
+    padding-bottom: 50px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 100px;
@@ -72,10 +76,11 @@ h1 {
 .todo-list {
     list-style: none;
     padding-left: 0px;
+    margin-bottom: 0px;
 }
 
 .todo-item {
-    padding: 20px;
+    padding: 14px;
 }
 
 .todo-item:nth-child(odd) {
@@ -93,19 +98,22 @@ h1 {
 
 .footer {
     border-top: 1px dashed #d5d3d3;
-    height: 60px;
+    height: 50px;
     color: #a9a9a9;
+    position: absolute;
+    width: 100%;
+    bottom: 0px;
 }
 
 .items-left {
     float: left;
-    padding: 20px;
+    padding: 15px;
     font-size: 0.8rem;
 }
 
 .mark-complete {
     float: right;
-    padding: 20px;
+    padding: 15px;
     font-size: 0.8rem;
     font-weight: 600;
     color: #488dc9;
