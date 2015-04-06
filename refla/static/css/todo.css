@@ -43,13 +43,14 @@ h1 {
     border: solid 1px #b7b6b6;
     border-radius: 5px;
     padding-left: 10px;
+    padding-top: 0px;
     margin-right: 10px;
     font-size: 1rem;
     font-weight: 300;
 }
 
 .todo-input button {
-    height: 39px;
+    height: 38px;
     width: 138px;
     padding: 0px;
     border: solid 1px #b7b6b6;
@@ -79,6 +80,15 @@ h1 {
 
 .todo-item:nth-child(odd) {
     background-color: #f4f7fa
+}
+
+.todo-item span {
+    margin-left: 15px;
+}
+
+.todo-item input[type=checkbox]:checked + span {
+    color: #a9a9a9;
+    text-decoration: line-through;
 }
 
 .footer {
