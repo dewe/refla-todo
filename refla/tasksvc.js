@@ -24,5 +24,14 @@ exports.updateTask = function(task, callback) {
 function apiJsonRequest(options, callback) {
   options.json = options.json || true;
   console.log('api call', options);
-  request(options, callback);
+  request(options, logError(callback));
+}
+
+function logError(callback) {
+  return function(err, response, body) {
+    if (err) {
+      console.error(err);
+    }
+    callback(err, response, body);
+  }
 }
