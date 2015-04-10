@@ -7,12 +7,19 @@ App is live at [http://refla.herokuapp.com](http://refla.herokuapp.com).
 
 ## Installation in local setup
 
+From root directory of this repository: 
+
 ```bash
 $ virtualenv env
 $ source env/bin/activate
 $ pip install -r requirements.txt
-$ python setup.py install
-$ npm install // needed for dev only
+```
+
+If you want to do development and/or run tests, then from root directory:
+
+```bash
+$ pip install -r tests/requirements.txt # installs pytest
+$ npm install # install tools for development and build
 ```
 
 ### Run the application

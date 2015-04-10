@@ -10,7 +10,7 @@
   "scripts": {
     "watch": "watchify refla/main.js --debug -o refla/static/js/bundle.js -v",
     "build": "browserify --debug refla/main.js | exorcist refla/static/js/bundle.js.map | uglifyjs > refla/static/js/bundle.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "py.test tests"
   },
   "repository": {
     "type": "git",
