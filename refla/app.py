@@ -57,11 +57,11 @@ def update_task(task_id):
     if task is None:
         abort(404)
     if not request.json:
-        abort(490)
+        abort(400)
     if 'title' in request.json and type(request.json['title']) is not unicode:
-        abort(491)
+        abort(400)
     if 'done' in request.json and type(request.json['done']) is not bool:
-        abort(492)
+        abort(400)
     task = db.update(task_id, {
         'title': request.json.get('title', task['title']),
         'done': request.json.get('done', task['done'])
